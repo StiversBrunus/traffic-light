@@ -1,78 +1,78 @@
 /* ======================================================
-   SELEÇÃO DE ELEMENTOS
+   SELECTION OF HTML ELEMENTS
    ====================================================== */
 
-// Imagem principal do semáforo
+// Principal image of traffic light
 const traffictLight = document.getElementById('img-traffic-light');
 
-// Botões de controle manual
+// Buttons manual control
 const red = document.getElementById('bt-red');
 const yellow = document.getElementById('bt-yellow');
 const green = document.getElementById('bt-green');
 
-// Botão de modo automático
+// Button auto mode
 const automatic = document.getElementById('bt-auto');
 
 
 /* ======================================================
-   ESTADO DA APLICAÇÃO
+   APPLICATION STATE
    ====================================================== */
 
-// Define se o modo automático está ligado
+// Define if the auto mode is on.
 let buttonOn = false;
 
-// Armazena o intervalo do setInterval
+// Save the interval of the setInterval
 let interval;
 
-// Controla qual imagem será exibida
+// Control what image is show.
 let image = 0;
 
 
 /* ======================================================
-   FUNÇÕES DE CONTROLE MANUAL
+  FUNCTIONS MANUAL CONTROL
    ====================================================== */
 
 function trafficLightRed() {
-    traffictLight.src = './img/vermelho.png';
+    traffictLight.src = './img/red.png';
 }
 
 function trafficLightYellow() {
-    traffictLight.src = './img/amarelo.png';
+    traffictLight.src = './img/yellow.png';
 }
 
 function trafficLightGreen() {
-    traffictLight.src = './img/verde.png';
+    traffictLight.src = './img/green.png';
 }
 
 function trafficLightTurnOff() {
-    traffictLight.src = './img/desligado.png';
+    traffictLight.src = './img/turnOff.png';
 }
 
 
 /* ======================================================
-   CONTROLE AUTOMÁTICO DO SEMÁFORO
+   FUNCTION CONTROL AUTO MODE
    ====================================================== */
 
 function runImages() {
 
-    // Garante que o semáforo começa desligado
+    // The traffic light starting off
     trafficLightTurnOff();
 
     return setInterval(function () {
 
         if (image == 0) {
 
-            traffictLight.src = './img/vermelho.png';
+            traffictLight.src = './img/red.png';
             image = 1;
 
         } else if (image == 1) {
 
-            traffictLight.src = './img/amarelo.png';
+            traffictLight.src = './img/yellow.png';
             image = 2;
 
         } else if (image == 2) {
 
-            traffictLight.src = './img/verde.png';
+            traffictLight.src = './img/green.png';
             image = 0;
 
         }
@@ -82,12 +82,12 @@ function runImages() {
 
 
 /* ======================================================
-   CONTROLE DO TOGGLE AUTOMÁTICO
+   FUNCTION CONTROL BUTTON TOGGLE AUTO MODE
    ====================================================== */
 
 function toggleTrafficLightMode(){
 
-    // Inverte estado do toggle
+    // Invert toggle state
     buttonOn = !buttonOn;
 
     if (buttonOn) {
@@ -104,7 +104,7 @@ function toggleTrafficLightMode(){
 
 
 /* ======================================================
-   EVENTOS
+   EVENTS
    ====================================================== */
 
 red.addEventListener('click', trafficLightRed);

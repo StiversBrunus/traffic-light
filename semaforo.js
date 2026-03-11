@@ -1,8 +1,15 @@
+var semaforo = document.getElementById ('semaforo');
+
 var vermelho = document.getElementById ('vermelho');
 var amarelo = document.getElementById ('amarelo');
 var verde = document.getElementById ('verde');
 var automatico = document.getElementById ('automatico');
-var semaforo = document.getElementById ('semaforo');
+
+// Implementando Toggle:
+let ligado = false;
+
+let intervalo;
+
 
 let imagem = 0;
 
@@ -18,9 +25,16 @@ function semaforoVerde () {
     semaforo.src = './img/verde.png';
 }
 
+function semaforoDesligado (){
+    semaforo.src = './img/desligado.png';
+}
+
 function rodarImagens () {
+
+    // Desliga o semaforo, antes de começar.
+    semaforoDesligado();
     
-    setInterval(function (){
+   return setInterval(function (){
         if (imagem == 0){
             semaforo.src = './img/verde.png';
             imagem = 1
@@ -34,7 +48,22 @@ function rodarImagens () {
     }, 1000);
 }
 
+function acionarToggle(){
+
+    ligado = !ligado;
+
+    if (ligado) {
+        console.log("Toggle ON");
+        intervalo = rodarImagens();
+    }else{
+        console.log("Toggle OFF");
+        semaforoDesligado();
+        clearInterval(intervalo);
+    }
+    
+}
+
 vermelho.addEventListener ('click', semaforoVermelho);
 amarelo.addEventListener ('click', semaforoAmarelo);
 verde.addEventListener ('click', semaforoVerde);
-automatico.addEventListener ('click', rodarImagens);
+automatico.addEventListener ('click', acionarToggle);
